@@ -1,0 +1,29 @@
+@font-face {
+    font-family: deliveryNote;
+    src: url(DeliveryNote.otf);
+}
+
+body {
+    background-color: lightgreen;
+}
+
+#usedLetters {
+    font-family: deliveryNote;
+    font-size: 128px;
+}
+
+#gameBoard {
+    width:44%;
+    float: left;
+    margin-left: 50px;
+}
+
+#gallows {
+    float: right;
+    margin-right: 50px;
+}
+
+#blanks {
+    font-size: 64px;
+
+}
