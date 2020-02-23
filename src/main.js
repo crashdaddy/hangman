@@ -1,5 +1,6 @@
 'use strict';
 
+// Here we have our array of words. When you play a game, you're guessing one of these words. These are randomly selected, as we'll see below.
 let words = ["abruptly","absurd","abyss","affix","askew","avenue","awkward","axiom","azure","bagpipes",
 "bandwagon","banjo","bayou","beekeeper","bikini","blitz","blizzard","boggle","bookworm","boxcar",
 "boxful","buckaroo","buffalo","buffoon","buxom","buzzard","buzzing","buzzwords","caliph","cobweb",
@@ -21,6 +22,7 @@ let words = ["abruptly","absurd","abyss","affix","askew","avenue","awkward","axi
 "wizard","woozy","wristwatch","wyvern","xylophone","yachtsman","yippee","yoked","youthful","yummy","zephyr",
 "zigzag","zigzagging","zilch","zipper","zodiac","zombie"];
 
+// This is the hangman gallows. Where your missed guesses are visually displayed, as a hangman. In the console you will see this array. Which is constructed of 'pipes' and basic characters. You get 10 wrong guesses.
 const gallowsStr = [``,
 `                   _____`,
 `                        |
@@ -83,6 +85,8 @@ const gallowsStr = [``,
                     / \\  |
                     _____|`];
 
+
+// Here we have our Objects, so we can use object-oriented programming. These properties are declared here, and are able to be used throughout the program. This streamlines coding and enables expansion of coding scope. You can add/modify things more easily.
 let hangManGame = {
   word : "",
   correctLetters: [],
@@ -95,15 +99,19 @@ let hangManGame = {
 
 }
 
+// This function selects a random word from the word array up top.
 function getRandomInt(min, max) {
     return min + Math.floor(Math.random() * (max - min + 1));
 }
 
+// Here we set 'Player1' to the object 'hangManGame'.
 let Player1 = hangManGame;
 
+// This is where that random function comes into play. We're setting the word property to the range of the word array up top.
 Player1.word = words[getRandomInt(0,words.length-1)];
 let wordLength = Player1.word.length;
 
+// This will give us blank spaces to fill in with correct letters. Using a for loop we can add a space for each letter of the word that is randomly chosen.
 let blanks = "";
   for (let i = 0;i<wordLength;i++){
     blanks += "_ ";
@@ -132,6 +140,7 @@ function checkCorrect(currentGuess){
   }
 }
 
+// This function will check your guess(letter) against the word that's selected for you to guess. If you guess correctly, we console.log a 'Good Guess! You're on FIRE!'. Also, if you guess wrong 10 times, your game is over!
 function checkGuess(currentGuess) {
   Player1.guesses++;
       if (Player1.word.includes(currentGuess)) {
@@ -171,6 +180,7 @@ function gameWon(blanks){
   } else return false;
 }
 
+// Here we print the gallows on the DOM (HTML) visually. Whenever you guess wrong, the images in the 'img' folder will be presented. Each wrong guess gives you more man on your hangman. 10 guesses till you're hung.
 function printGallows() {
   console.log(gallowsStr[Player1.wrongs]);  
   if (Player1.wrongs>0){
@@ -181,6 +191,7 @@ function printGallows() {
 
 }
 
+// Here we attach the 'blanks' to the DOM (HTML). And we have the 'inputBox' also being attached to the DOM. You can see jQuery in action here, with the '$()'. That is basically 'document.getElementById("")'. Then if you won, a message is displayed on the page, stating that you won!
  generateHint();
  $("#blanks").html(blanks);
 // this handles user input in the command line box
